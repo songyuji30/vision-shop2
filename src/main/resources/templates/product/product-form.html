@@ -18,8 +18,9 @@
                 <label for="productName" class="py-7 sm:w-full lg:w-52 flex items-center">
                     상품명 <span class="ml-0.5 color-red">*</span>
                 </label>
+
                 <div class="flex flex-col w-9/12 sm:min-w-[260px] md:max-w-[420px]">
-                    <input type="text" id="productName" th:field="*{productName}" class="w-full mr-1.5 border my-2 flex-shrink-0" placeholder="상품명을 입력해주세요.">
+                    <input type="text" id="productName" name="productName" th:field="*{productName}" class="w-full mr-1.5 border my-2 flex-shrink-0" placeholder="상품명을 입력해주세요.">
                     <p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="text-wrap color-red"></p>
                 </div>
             </div>
@@ -61,6 +62,13 @@
                 <div class="flex flex-col w-9/12 sm:min-w-[260px] md:max-w-[420px]">
                     <input type="text" id="translatorName" th:field="*{translatorName}" class="border my-2 w-full" placeholder="옮긴이를 입력해주세요.">
                     <p th:if="${#fields.hasErrors('translatorName')}" th:errors="*{translatorName}" class="text-wrap color-red"></p>
+                </div>
+            </div>
+            <div class="product-content flex flex-col lg:flex-row lg:items-center lg:space-x-4">
+                <label for="translatorName" class="py-14 sm:w-full lg:w-52 flex items-center pr-4">소개글</label>
+                <div class="flex grow flex-col w-9/12 sm:min-w-[260px] md:max-w-[420px]">
+                    <textarea type="text" id="description" th:field="*{description}" class="border my-2 w-full" placeholder="소개글을 입력해주세요."></textarea>
+                    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-wrap color-red"></p>
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const productId = productIdMatch ? productIdMatch[1] : null;
   setMode(productId);
 
+
+
   // 썸네일 이미지 관련 요소들
   const thumbnailUploadArea = document.getElementById('thumbnail-upload-area');
   const thumbnailInput = document.getElementById('thumbnailImage');

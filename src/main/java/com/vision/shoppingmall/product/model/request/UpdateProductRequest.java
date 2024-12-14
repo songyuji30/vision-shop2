@@ -1,16 +1,15 @@
 package com.vision.shoppingmall.product.model.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Setter
 @Getter
-public class CreateProductRequest {
+public class UpdateProductRequest {
+    @NotNull(message= "상품 Id값은 필수 항목입니다.")
+    private Long id;
+
     @NotBlank(message = "상품명은 필수 입력 항목입니다.")
     @Size(max = 50, message = "상품명은 최대 50자까지 입력 가능합니다.")
     private String productName;

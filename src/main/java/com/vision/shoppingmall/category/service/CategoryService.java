@@ -61,6 +61,20 @@ public class CategoryService {
 
     }
 
+    public List<CategoryResponse> getAllCategories() {
+        List<Category> categories
+                = categoryRepository.findAll();
+
+        return categories.stream()
+            .map(category ->
+                 new CategoryResponse(
+                         category.getId(),
+                         category.getCategoryName()
+                 )
+            ).toList();
+    }
+
+
     public CategoryResponse fingCategory(Long id) {
         Category category
                 = categoryRepository.findById(id)

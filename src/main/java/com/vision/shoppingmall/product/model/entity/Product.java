@@ -1,11 +1,19 @@
 package com.vision.shoppingmall.product.model.entity;
 
 import com.vision.shoppingmall.category.model.entity.Category;
+import com.vision.shoppingmall.product.model.request.CreateProductRequest;
+import com.vision.shoppingmall.product.model.request.UpdateProductRequest;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Builder
 @Getter
 @Entity(name = "products")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -55,7 +63,44 @@ public class Product {
     foreignKey = @ForeignKey(name = "fk_product_category"))
     private Category category;
 
+    public static Product create(CreateProductRequest request, Category category) {
+        return Product.builder()
+                .productName(request.getProductName())
+                .publisherName(request.getPublisherName())
+                .authorName(request.getAuthorName())
+                .translatorName(request.getTranslatorName())
+                .purchasePrice(request.getPurchasePrice())
+                .unitPrice(request.getUnitPrice())
+                .discountPrice(request.getDiscountPrice())
+                .sellingPrice(request.getSellingPrice())
+                .description(request.getDescription())
+                .thumbnailImageData(request.getThumbnailImageData())
+                .productImageData(request.getDetailImageData())
+                .productStatus(ProductStatus.ACTIVE)
+                .category(category)
+                .build();
+    }
+
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void update(UpdateProductRequest request, Category category) {
+        this.productName = request.getProductName();
+        this.publisherName = request.getPublisherName();
+        this.authorName = request.getAuthorName();
+        this.translatorName = request.getTranslatorName();
+        this.description = request.getDescription();
+        this.purchasePrice = request.getPurchasePrice();
+        this.unitPrice = request.getUnitPrice();
+        this.sellingPrice = request.getSellingPrice();
+        this.discountPrice = request.getDiscountPrice();
+        this.thumbnailImageData = request.getThumbnailImageData();
+        this.productImageData = request.getDetailImageData();
+        this.category = category;
+    }
+
+    public void delete() {
+        this.productStatus = ProductStatus.INACTIVE;
     }
 }
