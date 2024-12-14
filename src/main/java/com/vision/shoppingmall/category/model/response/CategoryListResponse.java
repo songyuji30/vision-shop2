@@ -10,4 +10,5 @@ import lombok.Setter;
 public class CategoryListResponse {
     private Long id;
     private String categoryName;
+    private Long productCount;
 }

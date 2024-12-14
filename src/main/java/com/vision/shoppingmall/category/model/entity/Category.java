@@ -1,9 +1,12 @@
 package com.vision.shoppingmall.category.model.entity;
 
 import com.vision.shoppingmall.category.model.request.CreateCategoryRequest;
+import com.vision.shoppingmall.product.model.entity.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+
+import java.util.List;
 
 @Builder
 @Entity(name = "categories")
@@ -20,6 +23,9 @@ public class Category {
 
     @Column(name = "category_name", nullable = false)
     private String categoryName;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Product> products;
 
     public static Category create(CreateCategoryRequest request) {
         return Category.builder()
